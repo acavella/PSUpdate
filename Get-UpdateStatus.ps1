@@ -28,8 +28,8 @@
 		a8f3b5e6-fb1f-4814-a047-2257d39c2460 False     False     Offline Sync Service
 
 	.NOTES
-		Author: Michal Gajda
-		Blog  : http://commandlinegeeks.com/
+		Author: Tony Cavella
+		GitHub  : https://github.com/revokehq/PSUpdate
 		
 	.LINK
 		http://gallery.technet.microsoft.com/scriptcenter/2d191bcd-3308-4edd-9de2-88dff796b0bc
@@ -42,15 +42,15 @@
         [String]$Path,
 		[String]$Name
     )
-    Begin 
-    {
-    $User = [Security.Principal.WindowsIdentity]::GetCurrent()
-    $Role = (New-Object Security.Principal.WindowsPrincipal $user).IsInRole([Security.Principal.WindowsBuiltinRole]::Administrator)
-    $Test = "Test"
-
-    Write-Host $User
-    Write-Host $Role
-    Write-Warning $Test
+	Begin 
+	{
+    	$User = [Security.Principal.WindowsIdentity]::GetCurrent()
+		$Role = (New-Object Security.Principal.WindowsPrincipal $user).IsInRole([Security.Principal.WindowsBuiltinRole]::Administrator)
+	
+		if(!$Role)
+		{
+		Write-Warning "This function must be run with Administrative privileges."	
+		} 
     }
     Process {}
     End {}
